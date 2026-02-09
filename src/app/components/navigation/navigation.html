@@ -1,0 +1,60 @@
+<header [class.scrolled]="scrolled()" class="navbar" role="banner">
+  <nav class="navbar__inner container" aria-label="Main navigation">
+    <a class="navbar__brand script-font" href="#" (click)="scrollTo('hero'); $event.preventDefault()">
+      D &amp; B
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="navbar__links" role="list">
+      @for (link of navLinks; track link.fragment) {
+        <li>
+          <a
+            class="navbar__link"
+            [attr.href]="'#' + link.fragment"
+            (click)="scrollTo(link.fragment); $event.preventDefault()"
+          >
+            {{ link.label }}
+          </a>
+        </li>
+      }
+    </ul>
+
+    <!-- Hamburger button (mobile) -->
+    <button
+      class="navbar__hamburger"
+      type="button"
+      [attr.aria-expanded]="mobileMenuOpen()"
+      aria-controls="mobile-menu"
+      aria-label="Toggle navigation menu"
+      (click)="toggleMenu()"
+    >
+      <span class="navbar__hamburger-line" [class.open]="mobileMenuOpen()"></span>
+      <span class="navbar__hamburger-line" [class.open]="mobileMenuOpen()"></span>
+      <span class="navbar__hamburger-line" [class.open]="mobileMenuOpen()"></span>
+    </button>
+
+    <!-- Mobile overlay menu -->
+    @if (mobileMenuOpen()) {
+      <div
+        id="mobile-menu"
+        class="navbar__mobile-overlay"
+        role="dialog"
+        aria-label="Navigation menu"
+      >
+        <ul class="navbar__mobile-links" role="list">
+          @for (link of navLinks; track link.fragment) {
+            <li>
+              <a
+                class="navbar__mobile-link"
+                [attr.href]="'#' + link.fragment"
+                (click)="scrollTo(link.fragment); $event.preventDefault()"
+              >
+                {{ link.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+  </nav>
+</header>

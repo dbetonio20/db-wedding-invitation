@@ -1,0 +1,31 @@
+<section id="countdown" class="section countdown" aria-labelledby="countdown-title">
+  <div class="container">
+    <h2 id="countdown-title" class="section-title script-font">Counting Down to Forever</h2>
+
+    @if (isPast()) {
+      <div class="countdown__celebration" role="status">
+        <p class="countdown__congrats script-font">We Did It!</p>
+        <p class="countdown__message">Thank you for being part of our love story ♥</p>
+      </div>
+    } @else {
+      <div class="countdown__cards" role="timer" aria-label="Countdown to wedding day" aria-live="polite">
+        <div class="countdown__card">
+          <span class="countdown__number display-font" aria-label="Days">{{ days() }}</span>
+          <span class="countdown__label">Days</span>
+        </div>
+        <div class="countdown__card">
+          <span class="countdown__number display-font" aria-label="Hours">{{ pad(hours()) }}</span>
+          <span class="countdown__label">Hours</span>
+        </div>
+        <div class="countdown__card">
+          <span class="countdown__number display-font" aria-label="Minutes">{{ pad(mins()) }}</span>
+          <span class="countdown__label">Mins</span>
+        </div>
+        <div class="countdown__card">
+          <span class="countdown__number display-font" aria-label="Seconds">{{ pad(secs()) }}</span>
+          <span class="countdown__label">Secs</span>
+        </div>
+      </div>
+    }
+  </div>
+</section>

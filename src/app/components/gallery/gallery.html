@@ -1,0 +1,84 @@
+<section id="gallery" class="section gallery" aria-labelledby="gallery-title">
+  <div class="container">
+    <h2 id="gallery-title" class="section-title">Our Moments</h2>
+
+    <div class="gallery__grid">
+      @for (img of images; track img.src; let i = $index) {
+        <button
+          class="gallery__item"
+          [class.gallery__item--tall]="img.span === 'tall'"
+          [class.gallery__item--wide]="img.span === 'wide'"
+          type="button"
+          (click)="openLightbox(i)"
+          [attr.aria-label]="'View ' + img.alt"
+        >
+          <div class="gallery__shimmer" aria-hidden="true"></div>
+          <img
+            class="gallery__img"
+            [src]="img.src"
+            [alt]="img.alt"
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox overlay -->
+@if (lightboxOpen()) {
+  <div
+    class="lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Photo viewer"
+    (click)="onBackdropClick($event)"
+    (touchstart)="onTouchStart($event)"
+    (touchend)="onTouchEnd($event)"
+  >
+    <div class="lightbox__header">
+      <span class="lightbox__counter">{{ lightboxCounter() }}</span>
+      <button
+        class="lightbox__close"
+        type="button"
+        aria-label="Close photo viewer"
+        (click)="closeLightbox()"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <button
+      class="lightbox__nav lightbox__nav--prev"
+      type="button"
+      aria-label="Previous photo"
+      (click)="prev()"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" aria-hidden="true">
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+    </button>
+
+    @if (lightboxImage(); as img) {
+      <img
+        class="lightbox__img"
+        [src]="img.src"
+        [alt]="img.alt"
+      />
+    }
+
+    <button
+      class="lightbox__nav lightbox__nav--next"
+      type="button"
+      aria-label="Next photo"
+      (click)="next()"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28" aria-hidden="true">
+        <path d="M9 18l6-6-6-6" />
+      </svg>
+    </button>
+  </div>
+}

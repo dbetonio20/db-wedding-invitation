@@ -1,0 +1,24 @@
+<section id="our-story" class="section our-story" aria-labelledby="our-story-title">
+  <div class="container">
+    <h2 id="our-story-title" class="section-title">Our Story</h2>
+
+    <div class="timeline" role="list">
+      @for (item of milestones; track item.year) {
+        <div
+          class="timeline__item"
+          [class.timeline__item--highlight]="item.highlight"
+          role="listitem"
+        >
+          <div class="timeline__marker">
+            <span class="timeline__dot" aria-hidden="true"></span>
+            <span class="timeline__year">{{ item.year }}</span>
+          </div>
+          <div class="timeline__content">
+            <h3 class="timeline__heading">{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

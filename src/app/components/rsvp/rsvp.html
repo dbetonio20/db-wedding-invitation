@@ -1,0 +1,69 @@
+<section id="rsvp" class="section rsvp" aria-labelledby="rsvp-title">
+  <div class="container">
+    <h2 id="rsvp-title" class="section-title">Kindly Respond</h2>
+
+    <form class="rsvp__form" aria-label="RSVP form">
+      <div class="rsvp__field">
+        <label class="rsvp__label" for="rsvp-name">Full Name</label>
+        <input
+          class="rsvp__input"
+          type="text"
+          id="rsvp-name"
+          name="name"
+          placeholder="Your full name"
+          required
+        >
+      </div>
+
+      <div class="rsvp__field">
+        <label class="rsvp__label" for="rsvp-email">Email</label>
+        <input
+          class="rsvp__input"
+          type="email"
+          id="rsvp-email"
+          name="email"
+          placeholder="your@email.com"
+          required
+        >
+      </div>
+
+      <fieldset class="rsvp__fieldset">
+        <legend class="rsvp__label">Attending?</legend>
+        <div class="rsvp__radio-group">
+          <label class="rsvp__radio-label">
+            <input type="radio" name="attending" value="yes" required>
+            <span>Joyfully Accept</span>
+          </label>
+          <label class="rsvp__radio-label">
+            <input type="radio" name="attending" value="no">
+            <span>Regretfully Decline</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="rsvp__field">
+        <label class="rsvp__label" for="rsvp-guests">Number of Guests</label>
+        <select class="rsvp__input rsvp__select" id="rsvp-guests" name="guests">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+      <div class="rsvp__field">
+        <label class="rsvp__label" for="rsvp-message">Message (Optional)</label>
+        <textarea
+          class="rsvp__input rsvp__textarea"
+          id="rsvp-message"
+          name="message"
+          rows="4"
+          placeholder="Any message for the couple…"
+        ></textarea>
+      </div>
+
+      <button class="rsvp__submit" type="submit">Send RSVP</button>
+    </form>
+  </div>
+</section>

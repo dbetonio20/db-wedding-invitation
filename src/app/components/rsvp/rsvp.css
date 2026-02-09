@@ -1,0 +1,120 @@
+/* ===========================
+   RSVP Section
+   =========================== */
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.rsvp {
+  background-color: var(--color-surface);
+}
+
+.rsvp__form {
+  max-width: 520px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.rsvp__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.rsvp__label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.rsvp__input {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(201, 164, 160, 0.3);
+  border-radius: 4px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: border-color var(--transition-fast);
+  min-height: 44px;
+}
+
+.rsvp__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(201, 164, 160, 0.15);
+}
+
+.rsvp__input::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.6;
+}
+
+.rsvp__select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236B6B6B' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.rsvp__textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.rsvp__fieldset {
+  border: none;
+  padding: 0;
+}
+
+.rsvp__radio-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.375rem;
+}
+
+.rsvp__radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.rsvp__radio-label input[type="radio"] {
+  accent-color: var(--color-primary);
+  width: 18px;
+  height: 18px;
+}
+
+.rsvp__submit {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-surface);
+  background-color: var(--color-primary);
+  padding: 1rem 2.5rem;
+  border-radius: 4px;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  min-height: 44px;
+  align-self: center;
+  margin-top: 0.5rem;
+}
+
+.rsvp__submit:hover {
+  background-color: #b89490;
+  transform: translateY(-1px);
+}

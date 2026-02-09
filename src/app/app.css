@@ -1,0 +1,27 @@
+/* ===========================
+   App Root Styles
+   =========================== */
+
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+
+/* Skip link — visible on focus for keyboard users */
+.skip-link:focus {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  width: auto;
+  height: auto;
+  clip: auto;
+  white-space: normal;
+  overflow: visible;
+}

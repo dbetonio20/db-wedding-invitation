@@ -1,0 +1,79 @@
+/* ===========================
+   Countdown Section
+   =========================== */
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.countdown {
+  background-color: var(--color-bg);
+  text-align: center;
+}
+
+.countdown__cards {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.countdown__card {
+  background-color: var(--color-surface);
+  border: 1px solid rgba(201, 164, 160, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem 1.25rem;
+  min-width: 80px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.countdown__number {
+  display: block;
+  font-size: 2.5rem;
+  color: var(--color-text);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.countdown__label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-secondary);
+}
+
+@media (min-width: 768px) {
+  .countdown__card {
+    min-width: 110px;
+    padding: 2rem 1.5rem;
+  }
+
+  .countdown__number {
+    font-size: 3rem;
+  }
+
+  .countdown__cards {
+    gap: 1.5rem;
+  }
+}
+
+/* Celebration state (after wedding) */
+.countdown__celebration {
+  text-align: center;
+}
+
+.countdown__congrats {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+
+.countdown__message {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
