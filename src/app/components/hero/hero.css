@@ -20,16 +20,13 @@
   text-align: center;
   overflow: hidden;
 
-  /* Background image — replace hero.jpg with your real prenup hero photo */
-  background:
-    linear-gradient(
-      180deg,
-      rgba(253, 248, 244, 0.3) 0%,
-      rgba(0, 0, 0, 0.15) 100%
-    ),
-    url('/images/prenup/hero.jpg');
+  /* Background image dynamically set via Angular binding */
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  
+  /* Ensure smooth transitions when image changes */
+  transition: background-image 0.3s ease-in-out;
 }
 
 .hero__overlay {

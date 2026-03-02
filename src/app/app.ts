@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
+import { EnvelopeLanding } from './components/envelope-landing/envelope-landing';
 import { Navigation } from './components/navigation/navigation';
 import { Hero } from './components/hero/hero';
 import { PhotoPanel } from './components/photo-panel/photo-panel';
@@ -14,6 +15,7 @@ import { Footer } from './components/footer/footer';
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    EnvelopeLanding,
     Navigation,
     Hero,
     PhotoPanel,
@@ -28,5 +30,11 @@ import { Footer } from './components/footer/footer';
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App {}
+export class App {
+  protected readonly siteRevealed = signal(false);
+
+  onEnvelopeRevealed(): void {
+    this.siteRevealed.set(true);
+  }
+}
 

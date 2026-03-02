@@ -1,0 +1,165 @@
+<!-- ════════════════════════════════════════════════
+     Envelope Landing — full-screen animated entry
+     ════════════════════════════════════════════════ -->
+<section
+  class="env-scene"
+  [class.env-scene--exit]="isRevealed()"
+  aria-label="Wedding invitation — press Enter or Space to open"
+  role="main"
+>
+
+  <!-- ── Floating particle field ─────────────────── -->
+  <div class="env-particles" aria-hidden="true">
+    @for (p of particles(); track p.id) {
+      <span
+        class="env-particle"
+        [class.env-particle--petal]="p.type === 'petal'"
+        [class.env-particle--bokeh]="p.type === 'bokeh'"
+        [style.left.%]="p.x"
+        [style.top.%]="p.y"
+        [style.width.px]="p.size"
+        [style.height.px]="p.type === 'petal' ? p.size * 1.65 : p.size"
+        [style.opacity]="p.opacity"
+        [style.animation-duration.s]="p.duration"
+        [style.animation-delay.s]="p.delay"
+        [style.--drift]="p.drift + 'px'"
+        [style.--rot]="p.rotation + 'deg'"
+      ></span>
+    }
+  </div>
+
+  <!-- ── Radial vignette ──────────────────────────── -->
+  <div class="env-vignette" aria-hidden="true"></div>
+
+  <!-- ── 3-D stage (parallax wrapper) ─────────────── -->
+  <div
+    class="env-stage"
+    [style.transform]="envelopeTransform"
+    [class.env-stage--opening]="isOpening()"
+  >
+
+    <!-- ╔══════════════════════════════════╗
+         ║          ENVELOPE BODY           ║
+         ╚══════════════════════════════════╝ -->
+    <div
+      class="env-envelope"
+      [class.env-envelope--hover]="isHovering()"
+      [class.env-envelope--opening]="isOpening()"
+      role="button"
+      tabindex="0"
+      aria-label="Open the wedding invitation"
+      (click)="openEnvelope()"
+      (keydown.enter)="openEnvelope()"
+      (keydown.space)="openEnvelope()"
+      (mouseenter)="onMouseEnter()"
+      (mouseleave)="onMouseLeave()"
+    >
+
+      <!-- Paper body -->
+      <div class="env-body" aria-hidden="true"></div>
+
+      <!-- Side folds -->
+      <div class="env-fold env-fold--left"   aria-hidden="true"></div>
+      <div class="env-fold env-fold--right"  aria-hidden="true"></div>
+      <div class="env-fold env-fold--bottom" aria-hidden="true"></div>
+
+      <!-- ── Flap ───────────────────────────────────
+           NOTE: CSS border-triangle (width:0 height:0).
+           The seal MUST live outside this element.
+      ─────────────────────────────────────────────── -->
+      <div class="env-flap" [class.env-flap--open]="flapOpen()" aria-hidden="true"></div>
+
+      <!-- ── Wax seal (sibling of flap, positioned on envelope) ── -->
+      <div class="env-seal" [class.env-seal--shattered]="sealShattered()" aria-hidden="true">
+
+        <svg
+          class="env-seal__svg"
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <!-- Clip to circle so shimmer stroke doesn't bleed -->
+          <defs>
+            <clipPath id="seal-clip">
+              <circle cx="50" cy="50" r="44"/>
+            </clipPath>
+          </defs>
+          <!-- Base blob -->
+          <circle cx="50" cy="50" r="44" class="seal-base"/>
+          <!-- Decorative ring -->
+          <circle cx="50" cy="50" r="38" class="seal-ring" fill="none"/>
+          <!-- D & B monogram -->
+          <text x="50" y="43" class="seal-glyph seal-glyph--d" text-anchor="middle">D</text>
+          <text x="50" y="57" class="seal-glyph seal-glyph--amp" text-anchor="middle">&amp;</text>
+          <text x="50" y="72" class="seal-glyph seal-glyph--b" text-anchor="middle">B</text>
+          <!-- Rotating shimmer arc (clipped to seal circle) -->
+          <circle cx="50" cy="50" r="44" class="seal-shimmer" clip-path="url(#seal-clip)"/>
+          <!-- Fracture lines (invisible until shatter) -->
+          <g class="seal-fractures">
+            <line x1="50" y1="6"  x2="18" y2="94" class="seal-crack"/>
+            <line x1="50" y1="6"  x2="82" y2="94" class="seal-crack"/>
+            <line x1="6"  y1="50" x2="94" y2="50" class="seal-crack"/>
+            <line x1="14" y1="20" x2="86" y2="80" class="seal-crack"/>
+            <line x1="86" y1="20" x2="14" y2="80" class="seal-crack"/>
+          </g>
+        </svg>
+
+        <!-- Gold sparkle burst (only after shatter) -->
+        @if (sealShattered()) {
+          <div class="env-sparkles" aria-hidden="true">
+            @for (s of sparkles(); track s.id) {
+              <span
+                class="env-sparkle"
+                [style.--angle]="s.angle + 'deg'"
+                [style.--dist]="s.distance + 'px'"
+                [style.animation-delay.s]="s.delay"
+                [style.width.px]="s.size"
+                [style.height.px]="s.size"
+              ></span>
+            }
+          </div>
+        }
+
+      </div><!-- /env-seal -->
+
+      <!-- ── Invitation card (rises out of envelope) ── -->
+      <div
+        class="env-card"
+        [class.env-card--visible]="cardVisible()"
+        [class.env-card--expanding]="cardExpanding()"
+        aria-hidden="true"
+      >
+        <div class="env-card__inner">
+          <p class="env-card__eyebrow">Together with their families</p>
+          <h1 class="env-card__names">
+            Dominique<br>
+            <span class="env-card__amp">&amp;</span><br>
+            Bianca
+          </h1>
+          <p class="env-card__date">January 25, 2027</p>
+          <p class="env-card__venue">Chateau de Busay · Cebu</p>
+          <p class="env-card__ornament">✦ &thinsp; ✦ &thinsp; ✦</p>
+        </div>
+      </div>
+
+    </div><!-- /env-envelope -->
+
+  </div><!-- /env-stage -->
+
+  <!-- ── "Tap to open" prompt ─────────────────────── -->
+  @if (!isOpening()) {
+    <p class="env-prompt" aria-live="polite">
+      <span class="env-prompt__text">✦ &nbsp; tap to open &nbsp; ✦</span>
+    </p>
+  }
+
+  <!-- ── Audio toggle ──────────────────────────────── -->
+  <button
+    class="env-audio"
+    type="button"
+    (click)="toggleAudio()"
+    [attr.aria-label]="audioEnabled() ? 'Mute music' : 'Play ambient music'"
+    [attr.aria-pressed]="audioEnabled()"
+  >{{ audioEnabled() ? '🔊' : '🔇' }}</button>
+
+</section>
