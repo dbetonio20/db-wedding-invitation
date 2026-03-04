@@ -30,7 +30,12 @@
 
   <!-- ── Radial vignette ──────────────────────────── -->
   <div class="env-vignette" aria-hidden="true"></div>
-
+  <!-- ── Ambient glow behind envelope ───────────── -->
+  <div
+    class="env-glow"
+    [class.env-glow--active]="!isOpening()"
+    aria-hidden="true"
+  ></div>
   <!-- ── 3-D stage (parallax wrapper) ─────────────── -->
   <div
     class="env-stage"
@@ -83,9 +88,14 @@
             <clipPath id="seal-clip">
               <circle cx="50" cy="50" r="44"/>
             </clipPath>
+            <radialGradient id="seal-gradient" cx="40%" cy="35%" r="55%">
+              <stop offset="0%"  stop-color="#d4b0ab"/>
+              <stop offset="50%" stop-color="#C9A4A0"/>
+              <stop offset="100%" stop-color="#a88884"/>
+            </radialGradient>
           </defs>
           <!-- Base blob -->
-          <circle cx="50" cy="50" r="44" class="seal-base"/>
+          <circle cx="50" cy="50" r="44" class="seal-base" fill="url(#seal-gradient)"/>
           <!-- Decorative ring -->
           <circle cx="50" cy="50" r="38" class="seal-ring" fill="none"/>
           <!-- D & B monogram -->
@@ -158,8 +168,8 @@
     class="env-audio"
     type="button"
     (click)="toggleAudio()"
-    [attr.aria-label]="audioEnabled() ? 'Mute music' : 'Play ambient music'"
-    [attr.aria-pressed]="audioEnabled()"
-  >{{ audioEnabled() ? '🔊' : '🔇' }}</button>
+    [attr.aria-label]="audioService.enabled() ? 'Mute music' : 'Play ambient music'"
+    [attr.aria-pressed]="audioService.enabled()"
+  >{{ audioService.enabled() ? '🔊' : '🔇' }}</button>
 
 </section>

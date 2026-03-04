@@ -9,6 +9,7 @@ import {
   output,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { AudioService } from '../../services/audio.service';
 
 export interface Particle {
   id: number;
@@ -39,6 +40,7 @@ export interface Sparkle {
 })
 export class EnvelopeLanding implements OnDestroy {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  protected readonly audioService = inject(AudioService);
 
   // ── Animation state ──────────────────────────────────
   protected readonly isOpening    = signal(false);
@@ -48,7 +50,6 @@ export class EnvelopeLanding implements OnDestroy {
   protected readonly cardExpanding = signal(false);
   protected readonly isRevealed    = signal(false);
   protected readonly isHovering    = signal(false);
-  protected readonly audioEnabled  = signal(false);
 
   // ── Output: fires when scene has fully exited ─────────
   readonly revealed = output<void>();
@@ -166,30 +167,34 @@ export class EnvelopeLanding implements OnDestroy {
     this.isHovering.set(false);
     this.buildSparkles();
 
+    // Start music on first user interaction (click/tap satisfies browser autoplay policy)
+    if (!this.audioService.enabled()) {
+      this.audioService.play();
+    }
+
     // 1. Seal shatters immediately
     this.sealShattered.set(true);
 
-    // 2. Flap swings open
-    this.after(480, () => this.flapOpen.set(true));
+    // 2. Flap swings open (slight delay for drama)
+    this.after(550, () => this.flapOpen.set(true));
 
     // 3. Card slides up out of envelope
-    this.after(1100, () => this.cardVisible.set(true));
+    this.after(1250, () => this.cardVisible.set(true));
 
     // 4. Card expands full-screen
-    this.after(2050, () => this.cardExpanding.set(true));
+    this.after(2300, () => this.cardExpanding.set(true));
 
     // 5. Mark scene as exiting
-    this.after(2800, () => {
+    this.after(3100, () => {
       this.isRevealed.set(true);
       // Let CSS exit animation finish, then notify parent
-      this.after(750, () => this.revealed.emit());
+      this.after(900, () => this.revealed.emit());
     });
   }
 
   // ── Audio toggle ──────────────────────────────────────
   protected toggleAudio(): void {
-    this.audioEnabled.set(!this.audioEnabled());
-    // Wire up a real audio file here when available
+    this.audioService.toggle();
   }
 
   // ── Parallax transform ────────────────────────────────

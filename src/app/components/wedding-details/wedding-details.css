@@ -1,0 +1,309 @@
+/* ===========================
+   Wedding Details Section
+   =========================== */
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.wedding-details {
+  background-color: var(--color-bg);
+  position: relative;
+  overflow: hidden;
+  padding-block: 4rem;
+}
+
+/* ── Section title ──────────────────────────── */
+.details__title {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.details__divider {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  margin: 0 auto 3rem;
+  opacity: 0.7;
+}
+
+/* ── Content blocks ─────────────────────────── */
+.details__block {
+  max-width: 600px;
+  margin-inline: auto;
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+/* ── Headings ────────────────────────────────── */
+.details__heading {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  margin-bottom: 1.25rem;
+}
+
+.details__heading--script {
+  font-family: var(--font-script);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-primary);
+}
+
+/* ── Icon wrapper ────────────────────────────── */
+.details__icon-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.details__icon {
+  width: 36px;
+  height: 36px;
+  color: var(--color-primary);
+  opacity: 0.6;
+}
+
+/* ── Text blocks ─────────────────────────────── */
+.details__text {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+.details__text:last-child {
+  margin-bottom: 0;
+}
+
+.details__text--highlight {
+  font-weight: 500;
+  color: var(--color-text);
+  margin-top: 0.75rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.details__text--verse {
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.15rem;
+  line-height: 1.9;
+}
+
+.details__text strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* ── Separator ───────────────────────────────── */
+.details__separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
+  max-width: 400px;
+  gap: 1rem;
+}
+
+.details__separator::before,
+.details__separator::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  opacity: 0.3;
+}
+
+.details__separator-ornament {
+  font-size: 0.6rem;
+  color: var(--color-accent);
+  opacity: 0.6;
+}
+
+/* ── Color swatches ──────────────────────────── */
+.details__swatches {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem auto 0.75rem;
+}
+
+.details__swatch {
+  position: relative;
+  width: 72px;
+  height: 82px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.details__swatch:hover {
+  transform: scale(1.08);
+}
+
+.details__swatch--1 {
+  background: linear-gradient(135deg, #d1aca8, #C9A4A0);
+}
+
+.details__swatch--2 {
+  background: linear-gradient(135deg, #c09a95, #B8918C);
+}
+
+.details__swatch--3 {
+  background: linear-gradient(135deg, #eddcc9, #E8D5C4);
+}
+
+.details__swatch-hex {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-size: 0.55rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.details__swatch:hover .details__swatch-hex {
+  opacity: 0.7;
+}
+
+.details__swatch-caption {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.08em;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Couple illustration ─────────────────────── */
+.details__couple-illustration {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.details__figure {
+  width: 70px;
+  height: 160px;
+  opacity: 0.75;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.details__figure:hover {
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+.details__figure svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Bottom ornament ─────────────────────────── */
+.details__bottom-ornament {
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.5em;
+  color: var(--color-accent);
+  opacity: 0.5;
+  margin-top: 3rem;
+}
+
+/* ── Decorative floral corners ───────────────── */
+.details__floral {
+  position: absolute;
+  width: clamp(100px, 20vw, 200px);
+  height: clamp(100px, 20vw, 200px);
+  opacity: 0.06;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M10 190 C30 140, 60 100, 100 80 C80 60, 40 30, 10 10' stroke='%23C9A4A0' stroke-width='2' fill='none'/%3E%3Ccircle cx='100' cy='80' r='20' fill='none' stroke='%23C9A4A0' stroke-width='1.5'/%3E%3Cpath d='M100 60 C105 70, 115 75, 120 80 C115 85, 105 90, 100 100 C95 90, 85 85, 80 80 C85 75, 95 70, 100 60Z' fill='%23C9A4A0' opacity='0.4'/%3E%3Ccircle cx='60' cy='130' r='15' fill='none' stroke='%23C9A4A0' stroke-width='1.5'/%3E%3Cpath d='M60 115 C64 123, 72 127, 75 130 C72 133, 64 137, 60 145 C56 137, 48 133, 45 130 C48 127, 56 123, 60 115Z' fill='%23C9A4A0' opacity='0.3'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.details__floral--tl {
+  top: 0;
+  left: 0;
+  transform: rotate(0deg);
+}
+
+.details__floral--tr {
+  top: 0;
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.details__floral--bl {
+  bottom: 0;
+  left: 0;
+  transform: scaleY(-1);
+}
+
+.details__floral--br {
+  bottom: 0;
+  right: 0;
+  transform: scale(-1);
+}
+
+/* ── Desktop ─────────────────────────────────── */
+@media (min-width: 768px) {
+  .wedding-details {
+    padding-block: 5rem;
+  }
+
+  .details__block {
+    padding: 2rem 2rem;
+  }
+
+  .details__swatch {
+    width: 88px;
+    height: 100px;
+  }
+
+  .details__swatches {
+    gap: 1.5rem;
+  }
+
+  .details__figure {
+    width: 85px;
+    height: 190px;
+  }
+
+  .details__separator {
+    margin: 2.5rem auto;
+  }
+}
+
+/* ── Reduced motion ──────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .details__swatch:hover {
+    transform: none;
+  }
+
+  .details__figure:hover {
+    transform: none;
+  }
+}

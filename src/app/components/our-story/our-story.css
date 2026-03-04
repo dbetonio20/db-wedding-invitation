@@ -32,10 +32,22 @@
     to bottom,
     transparent,
     var(--color-primary) 10%,
-    var(--color-primary) 90%,
-    transparent
+    var(--color-primary)
   );
   opacity: 0.35;
+}
+
+/* Fade the line below the last marker dot */
+.timeline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5rem;
+  background: linear-gradient(to bottom, transparent, var(--color-surface));
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* ---- Item ---- */
@@ -45,6 +57,7 @@
   opacity: 0;
   transform: translateY(24px);
   animation: tl-fade-in 0.6s ease forwards;
+  z-index: 2;
 }
 
 .timeline__item:nth-child(1) { animation-delay: 0.1s; }

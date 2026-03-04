@@ -42,9 +42,17 @@
   />
   <app-gallery />
 
-  <!-- Photo panel 5 → revealed as Venue/RSVP scrolls away -->
+  <!-- Photo panel 5 → revealed as Wedding Details scrolls away -->
   <app-photo-panel
     src="images/prenup/prenup-5.jpg"
+    alt="Dominique and Bianca prenup photo — The Details"
+    caption="A love worth celebrating"
+  />
+  <app-wedding-details />
+
+  <!-- Photo panel 6 → revealed as Venue/RSVP scrolls away -->
+  <app-photo-panel
+    src="images/prenup/prenup-6.jpg"
     alt="Dominique and Bianca prenup photo — The Day"
     caption="See you at the celebration"
   />
@@ -53,5 +61,31 @@
 </main>
 
 <app-footer />
+
+<!-- ── Floating audio toggle (persistent across whole site) ── -->
+@if (siteRevealed()) {
+  <button
+    class="audio-fab"
+    type="button"
+    (click)="audioService.toggle()"
+    [attr.aria-label]="audioService.enabled() ? 'Mute music' : 'Play ambient music'"
+    [attr.aria-pressed]="audioService.enabled()"
+    [class.audio-fab--playing]="audioService.enabled()"
+  >
+    @if (audioService.enabled()) {
+      <svg class="audio-fab__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20">
+        <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07" stroke-linecap="round"/>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke-linecap="round"/>
+      </svg>
+    } @else {
+      <svg class="audio-fab__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20">
+        <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+        <line x1="23" y1="9" x2="17" y2="15" stroke-linecap="round"/>
+        <line x1="17" y1="9" x2="23" y2="15" stroke-linecap="round"/>
+      </svg>
+    }
+  </button>
+}
 
 </div><!-- /site-wrapper -->

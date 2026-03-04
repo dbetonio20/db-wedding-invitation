@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, inject } from '@angular/core';
 import { EnvelopeLanding } from './components/envelope-landing/envelope-landing';
 import { Navigation } from './components/navigation/navigation';
 import { Hero } from './components/hero/hero';
@@ -7,9 +7,11 @@ import { OurStory } from './components/our-story/our-story';
 import { Countdown } from './components/countdown/countdown';
 import { Invitation } from './components/invitation/invitation';
 import { Gallery } from './components/gallery/gallery';
+import { WeddingDetails } from './components/wedding-details/wedding-details';
 import { Venue } from './components/venue/venue';
 import { Rsvp } from './components/rsvp/rsvp';
 import { Footer } from './components/footer/footer';
+import { AudioService } from './services/audio.service';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +25,7 @@ import { Footer } from './components/footer/footer';
     Countdown,
     Invitation,
     Gallery,
+    WeddingDetails,
     Venue,
     Rsvp,
     Footer,
@@ -32,6 +35,7 @@ import { Footer } from './components/footer/footer';
 })
 export class App {
   protected readonly siteRevealed = signal(false);
+  protected readonly audioService = inject(AudioService);
 
   onEnvelopeRevealed(): void {
     this.siteRevealed.set(true);

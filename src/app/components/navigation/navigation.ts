@@ -26,7 +26,8 @@ export class Navigation {
   protected readonly navLinks = [
     { label: 'Our Story', fragment: 'our-story' },
     { label: 'Gallery', fragment: 'gallery' },
-    { label: 'Details', fragment: 'invitation' },
+    { label: 'Details', fragment: 'wedding-details' },
+    { label: 'Venue', fragment: 'venue' },
     { label: 'RSVP', fragment: 'rsvp' },
   ];
 
