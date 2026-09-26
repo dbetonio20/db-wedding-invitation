@@ -1,5 +1,5 @@
 <!-- ════════════════════════════════════════════════
-     Envelope Landing — full-screen animated entry
+     Envelope Landing — Full-screen Animated Entry Experience
      ════════════════════════════════════════════════ -->
 <section
   class="env-scene"
@@ -8,7 +8,7 @@
   role="main"
 >
 
-  <!-- ── Floating particle field ─────────────────── -->
+  <!-- ── Floating particle field (rose petals & ambient bokeh) ── -->
   <div class="env-particles" aria-hidden="true">
     @for (p of particles(); track p.id) {
       <span
@@ -18,7 +18,7 @@
         [style.left.%]="p.x"
         [style.top.%]="p.y"
         [style.width.px]="p.size"
-        [style.height.px]="p.type === 'petal' ? p.size * 1.65 : p.size"
+        [style.height.px]="p.type === 'petal' ? p.size * 1.6 : p.size"
         [style.opacity]="p.opacity"
         [style.animation-duration.s]="p.duration"
         [style.animation-delay.s]="p.delay"
@@ -28,15 +28,17 @@
     }
   </div>
 
-  <!-- ── Radial vignette ──────────────────────────── -->
+  <!-- ── Radial vignette for cinematic depth ───── -->
   <div class="env-vignette" aria-hidden="true"></div>
-  <!-- ── Ambient glow behind envelope ───────────── -->
+
+  <!-- ── Ambient warm halo behind envelope ──────── -->
   <div
     class="env-glow"
     [class.env-glow--active]="!isOpening()"
     aria-hidden="true"
   ></div>
-  <!-- ── 3-D stage (parallax wrapper) ─────────────── -->
+
+  <!-- ── 3D Stage (Parallax & tilt wrapper) ────── -->
   <div
     class="env-stage"
     [style.transform]="envelopeTransform"
@@ -60,21 +62,22 @@
       (mouseleave)="onMouseLeave()"
     >
 
-      <!-- Paper body -->
-      <div class="env-body" aria-hidden="true"></div>
+      <!-- Paper body with linen texture & gold foil border -->
+      <div class="env-body" aria-hidden="true">
+        <span class="env-body__foil-border"></span>
+      </div>
 
       <!-- Side folds -->
       <div class="env-fold env-fold--left"   aria-hidden="true"></div>
       <div class="env-fold env-fold--right"  aria-hidden="true"></div>
       <div class="env-fold env-fold--bottom" aria-hidden="true"></div>
 
-      <!-- ── Flap ───────────────────────────────────
-           NOTE: CSS border-triangle (width:0 height:0).
-           The seal MUST live outside this element.
-      ─────────────────────────────────────────────── -->
-      <div class="env-flap" [class.env-flap--open]="flapOpen()" aria-hidden="true"></div>
+      <!-- ── Flap (CSS 3D fold) ───────────────────── -->
+      <div class="env-flap" [class.env-flap--open]="flapOpen()" aria-hidden="true">
+        <span class="env-flap__crease"></span>
+      </div>
 
-      <!-- ── Wax seal (sibling of flap, positioned on envelope) ── -->
+      <!-- ── Artisanal Wax Seal ───────────────────── -->
       <div class="env-seal" [class.env-seal--shattered]="sealShattered()" aria-hidden="true">
 
         <svg
@@ -83,38 +86,60 @@
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
         >
-          <!-- Clip to circle so shimmer stroke doesn't bleed -->
           <defs>
-            <clipPath id="seal-clip">
-              <circle cx="50" cy="50" r="44"/>
-            </clipPath>
-            <radialGradient id="seal-gradient" cx="40%" cy="35%" r="55%">
-              <stop offset="0%"  stop-color="#d4b0ab"/>
-              <stop offset="50%" stop-color="#C9A4A0"/>
-              <stop offset="100%" stop-color="#a88884"/>
+            <!-- Radial gradient for realistic wax lighting -->
+            <radialGradient id="seal-gradient" cx="36%" cy="32%" r="62%">
+              <stop offset="0%"   stop-color="#e8c8c4"/>
+              <stop offset="28%"  stop-color="#d6ada8"/>
+              <stop offset="65%"  stop-color="#C9A4A0"/>
+              <stop offset="100%" stop-color="#9d7470"/>
             </radialGradient>
+            <radialGradient id="seal-inner-gradient" cx="40%" cy="35%" r="58%">
+              <stop offset="0%"   stop-color="#dfb8b4"/>
+              <stop offset="60%"  stop-color="#c59f9b"/>
+              <stop offset="100%" stop-color="#99706c"/>
+            </radialGradient>
+            <!-- Clip to inner ring for shimmer -->
+            <clipPath id="seal-clip">
+              <circle cx="50" cy="50" r="42"/>
+            </clipPath>
           </defs>
-          <!-- Base blob -->
-          <circle cx="50" cy="50" r="44" class="seal-base" fill="url(#seal-gradient)"/>
-          <!-- Decorative ring -->
-          <circle cx="50" cy="50" r="38" class="seal-ring" fill="none"/>
-          <!-- D & B monogram -->
-          <text x="50" y="43" class="seal-glyph seal-glyph--d" text-anchor="middle">D</text>
-          <text x="50" y="57" class="seal-glyph seal-glyph--amp" text-anchor="middle">&amp;</text>
-          <text x="50" y="72" class="seal-glyph seal-glyph--b" text-anchor="middle">B</text>
-          <!-- Rotating shimmer arc (clipped to seal circle) -->
-          <circle cx="50" cy="50" r="44" class="seal-shimmer" clip-path="url(#seal-clip)"/>
-          <!-- Fracture lines (invisible until shatter) -->
+
+          <!-- Organic wax rim with natural hand-stamped contours -->
+          <path
+            class="seal-base"
+            fill="url(#seal-gradient)"
+            d="M50 4 C64 3.5, 76 6, 85 15 C94 24, 97 36, 96 50 C95 64, 91 76, 82 85 C73 94, 61 97, 48 96 C34 95, 23 91, 14 82 C5 73, 3 61, 4 48 C5 34, 10 23, 19 14 C28 5, 40 4.5, 50 4 Z"
+          />
+
+          <!-- Inner recessed stamp bed -->
+          <circle cx="50" cy="50" r="39" class="seal-bed" fill="url(#seal-inner-gradient)"/>
+
+          <!-- Delicate gold beaded ring -->
+          <circle cx="50" cy="50" r="36" class="seal-ring" fill="none"/>
+          <circle cx="50" cy="50" r="33.5" class="seal-inner-ring" fill="none"/>
+
+          <!-- Monogram: Dominique & Bianca -->
+          <g class="seal-monogram">
+            <text x="50" y="38" class="seal-glyph seal-glyph--d" text-anchor="middle" dominant-baseline="central">D</text>
+            <text x="50" y="52" class="seal-glyph seal-glyph--amp" text-anchor="middle" dominant-baseline="central">&amp;</text>
+            <text x="50" y="66" class="seal-glyph seal-glyph--b" text-anchor="middle" dominant-baseline="central">B</text>
+          </g>
+
+          <!-- Rotating golden shimmer highlight -->
+          <circle cx="50" cy="50" r="42" class="seal-shimmer" clip-path="url(#seal-clip)"/>
+
+          <!-- Fracture lines during crack sequence -->
           <g class="seal-fractures">
-            <line x1="50" y1="6"  x2="18" y2="94" class="seal-crack"/>
-            <line x1="50" y1="6"  x2="82" y2="94" class="seal-crack"/>
-            <line x1="6"  y1="50" x2="94" y2="50" class="seal-crack"/>
-            <line x1="14" y1="20" x2="86" y2="80" class="seal-crack"/>
-            <line x1="86" y1="20" x2="14" y2="80" class="seal-crack"/>
+            <line x1="50" y1="4"  x2="22" y2="92" class="seal-crack"/>
+            <line x1="50" y1="4"  x2="78" y2="92" class="seal-crack"/>
+            <line x1="6"  y1="48" x2="94" y2="52" class="seal-crack"/>
+            <line x1="16" y1="18" x2="84" y2="82" class="seal-crack"/>
+            <line x1="84" y1="18" x2="16" y2="82" class="seal-crack"/>
           </g>
         </svg>
 
-        <!-- Gold sparkle burst (only after shatter) -->
+        <!-- Golden stardust sparkles on crack -->
         @if (sealShattered()) {
           <div class="env-sparkles" aria-hidden="true">
             @for (s of sparkles(); track s.id) {
@@ -132,7 +157,7 @@
 
       </div><!-- /env-seal -->
 
-      <!-- ── Invitation card (rises out of envelope) ── -->
+      <!-- ── Luxury Invitation Card (Slides out of envelope) ── -->
       <div
         class="env-card"
         [class.env-card--visible]="cardVisible()"
@@ -140,15 +165,26 @@
         aria-hidden="true"
       >
         <div class="env-card__inner">
-          <p class="env-card__eyebrow">Together with their families</p>
-          <h1 class="env-card__names">
-            Dominique<br>
-            <span class="env-card__amp">&amp;</span><br>
-            Bianca
-          </h1>
-          <p class="env-card__date">January 25, 2027</p>
-          <p class="env-card__venue">Chateau de Busay · Cebu</p>
-          <p class="env-card__ornament">✦ &thinsp; ✦ &thinsp; ✦</p>
+          <div class="env-card__frame">
+            <span class="env-card__corner env-card__corner--tl"></span>
+            <span class="env-card__corner env-card__corner--tr"></span>
+            <span class="env-card__corner env-card__corner--bl"></span>
+            <span class="env-card__corner env-card__corner--br"></span>
+
+            <p class="env-card__eyebrow">Together with their families</p>
+            <h1 class="env-card__names">
+              Dominique
+              <span class="env-card__amp">&amp;</span>
+              Bianca
+            </h1>
+            <div class="env-card__divider">
+              <span class="env-card__divider-line"></span>
+              <span class="env-card__divider-symbol">✦</span>
+              <span class="env-card__divider-line"></span>
+            </div>
+            <p class="env-card__date">January 25, 2027</p>
+            <p class="env-card__venue">Chateau de Busay · Cebu</p>
+          </div>
         </div>
       </div>
 
@@ -156,20 +192,45 @@
 
   </div><!-- /env-stage -->
 
-  <!-- ── "Tap to open" prompt ─────────────────────── -->
+  <!-- ── Interactive "Tap to open" prompt button ── -->
   @if (!isOpening()) {
-    <p class="env-prompt" aria-live="polite">
-      <span class="env-prompt__text">✦ &nbsp; tap to open &nbsp; ✦</span>
-    </p>
+    <div class="env-prompt" aria-live="polite">
+      <button
+        type="button"
+        class="env-prompt__btn"
+        (click)="openEnvelope()"
+        aria-label="Tap to open the wedding invitation"
+      >
+        <span class="env-prompt__sparkle" aria-hidden="true">✦</span>
+        <span class="env-prompt__text">Tap or Press Space to Open</span>
+        <span class="env-prompt__sparkle" aria-hidden="true">✦</span>
+      </button>
+    </div>
   }
 
-  <!-- ── Audio toggle ──────────────────────────────── -->
+  <!-- ── Sleek Audio Toggle (Matching site design) ── -->
   <button
     class="env-audio"
     type="button"
     (click)="toggleAudio()"
-    [attr.aria-label]="audioService.enabled() ? 'Mute music' : 'Play ambient music'"
+    [attr.aria-label]="audioService.enabled() ? 'Mute ambient music (Tahanan)' : 'Play ambient music (Tahanan)'"
+    [attr.title]="audioService.enabled() ? 'Mute ambient music' : 'Play ambient music'"
     [attr.aria-pressed]="audioService.enabled()"
-  >{{ audioService.enabled() ? '🔊' : '🔇' }}</button>
+    [class.env-audio--active]="audioService.enabled()"
+  >
+    @if (audioService.enabled()) {
+      <svg class="env-audio__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18" aria-hidden="true">
+        <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07" stroke-linecap="round"/>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke-linecap="round"/>
+      </svg>
+    } @else {
+      <svg class="env-audio__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18" aria-hidden="true">
+        <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+        <line x1="23" y1="9" x2="17" y2="15" stroke-linecap="round"/>
+        <line x1="17" y1="9" x2="23" y2="15" stroke-linecap="round"/>
+      </svg>
+    }
+  </button>
 
 </section>
