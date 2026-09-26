@@ -93,13 +93,38 @@
 }
 
 .audio-fab--playing {
+  width: 54px;
   border-color: rgba(212, 175, 55, 0.5);
   animation: fab-in 0.5s ease both, fab-pulse 3s ease-in-out 0.5s infinite;
+  gap: 4px;
 }
 
 @keyframes fab-pulse {
   0%, 100% { box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(212, 175, 55, 0.15); }
   50%      { box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), 0 0 0 6px rgba(212, 175, 55, 0); }
+}
+
+.audio-fab__equalizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+
+.audio-fab__bar {
+  width: 2px;
+  background-color: currentColor;
+  border-radius: 1px;
+  animation: audio-bounce 1s ease-in-out infinite alternate;
+}
+
+.audio-fab__bar:nth-child(1) { height: 6px; animation-delay: 0.1s; }
+.audio-fab__bar:nth-child(2) { height: 12px; animation-delay: 0.35s; }
+.audio-fab__bar:nth-child(3) { height: 8px; animation-delay: 0.2s; }
+
+@keyframes audio-bounce {
+  0%   { transform: scaleY(0.3); transform-origin: bottom; }
+  100% { transform: scaleY(1); transform-origin: bottom; }
 }
 
 .audio-fab__icon {
@@ -108,7 +133,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .audio-fab,
-  .audio-fab--playing {
+  .audio-fab--playing,
+  .audio-fab__bar {
     animation: none !important;
   }
 }

@@ -1,141 +1,168 @@
 <section id="wedding-details" class="section wedding-details" aria-labelledby="details-title">
   <div class="container">
 
-    <!-- ── Section heading ──────────────────────── -->
-    <h2 id="details-title" class="details__title script-font">The Details</h2>
-    <div class="details__divider" aria-hidden="true"></div>
-
-    <!-- ═══════════════════════════════════════════
-         Block 1 — Unplugged Ceremony
-         ═══════════════════════════════════════════ -->
-    <div class="details__block">
-      <h3 class="details__heading">Unplugged Ceremony</h3>
-      <div class="details__icon-wrap" aria-hidden="true">
-        <svg class="details__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <!-- camera with X -->
-          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-          <circle cx="12" cy="13" r="4"/>
-          <line x1="3" y1="3" x2="21" y2="21" stroke-width="2"/>
-        </svg>
+    <!-- ── Section Header ────────────────────────── -->
+    <div class="details__header">
+      <span class="details__eyebrow">Ceremony &amp; Celebration</span>
+      <h2 id="details-title" class="details__title script-font">The Details</h2>
+      <div class="details__divider" aria-hidden="true">
+        <span class="details__divider-line"></span>
+        <span class="details__divider-symbol">✦</span>
+        <span class="details__divider-line"></span>
       </div>
-      <p class="details__text">
-        The greatest gift you can give is being fully present
-        as we say, "I DO."
-      </p>
-      <p class="details__text">
-        We have hired professionals to capture this moment for us,
-        and we promise to share our photos as soon as we receive them.
-      </p>
-      <p class="details__text details__text--highlight">
-        After the ceremony, feel free to take as many photos
-        and videos as you'd like!
+      <p class="details__subtitle">
+        Everything you need to know to celebrate seamlessly with us on our wedding day.
       </p>
     </div>
 
-    <div class="details__separator" aria-hidden="true">
-      <span class="details__separator-ornament">✦</span>
+    <!-- ── 3-Card Grid ───────────────────────────── -->
+    <div class="details__grid">
+
+      <!-- ═══════════════════════════════════════════
+           Card 1 — Unplugged Ceremony
+           ═══════════════════════════════════════════ -->
+      <article class="details__card details__card--unplugged">
+        <div class="details__card-header">
+          <div class="details__icon-badge" aria-hidden="true">
+            <svg class="details__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+              <line x1="2" y1="2" x2="22" y2="22"/>
+            </svg>
+          </div>
+          <span class="details__badge">Ceremony Etiquette</span>
+          <h3 class="details__card-title">Unplugged Ceremony</h3>
+        </div>
+
+        <div class="details__card-body">
+          <p class="details__lead-text">
+            The greatest gift you can give is being fully present as we say, &ldquo;I DO.&rdquo;
+          </p>
+          <p class="details__text">
+            We have hired professional photographers and videographers to capture every precious moment,
+            and we promise to share our full gallery with you as soon as it arrives!
+          </p>
+
+          <div class="details__callout">
+            <div class="details__callout-icon" aria-hidden="true">📸</div>
+            <div class="details__callout-content">
+              <span class="details__callout-title">Reception Photography</span>
+              <p class="details__callout-text">
+                After the ceremony concludes, please feel free to capture and share as many photos and videos as you&rsquo;d like!
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════════════════════════════════════════
+           Card 2 — Motif & Attire Guide
+           ═══════════════════════════════════════════ -->
+      <article class="details__card details__card--attire">
+        <div class="details__card-header">
+          <div class="details__icon-badge" aria-hidden="true">
+            <svg class="details__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Elegant hanger / attire icon -->
+              <path d="M12 4a3 3 0 0 0-3 3c0 1.3.8 2.4 2 2.8V11L2.5 17.5A2 2 0 0 0 4 21h16a2 2 0 0 0 1.5-3.5L13 11V9.8c1.2-.4 2-1.5 2-2.8a3 3 0 0 0-3-3z"/>
+              <path d="M6 17h12"/>
+            </svg>
+          </div>
+          <span class="details__badge">Dress Code</span>
+          <h3 class="details__card-title">Motif &amp; Attire Guide</h3>
+        </div>
+
+        <div class="details__card-body">
+          <div class="details__attire-banner">
+            <span class="details__attire-type">Semi-Formal to Formal</span>
+          </div>
+
+          <p class="details__text details__text--center">
+            Our wedding is a formal celebration, and we would be honored to see our family and friends dressed in their finest.
+          </p>
+
+          <!-- Color Swatches with accessible names and hex -->
+          <div class="details__palette" aria-label="Official wedding color palette">
+            <span class="details__palette-title">Color Motif</span>
+            <div class="details__swatches-row" role="list">
+              @for (swatch of swatches; track swatch.hex) {
+                <div
+                  class="details__swatch-item"
+                  role="listitem"
+                  [attr.aria-label]="swatch.ariaLabel"
+                >
+                  <div class="details__swatch-circle" [style.background]="swatch.gradient">
+                    <span class="details__swatch-shine" aria-hidden="true"></span>
+                  </div>
+                  <span class="details__swatch-name">{{ swatch.name }}</span>
+                  <span class="details__swatch-code">{{ swatch.hex }}</span>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Practical Attire Guidance -->
+          <ul class="details__attire-list" role="list">
+            @for (guide of attireGuidelines; track guide.role) {
+              <li class="details__attire-item">
+                <span class="details__attire-role">{{ guide.role }}:</span>
+                <span class="details__attire-desc">{{ guide.recommendation }}</span>
+              </li>
+            }
+          </ul>
+
+          <p class="details__courtesy-note">
+            <span class="details__courtesy-sparkle" aria-hidden="true">✦</span>
+            Kindly reserve all-white, ivory, and cream dresses for the bride.
+          </p>
+        </div>
+      </article>
+
+      <!-- ═══════════════════════════════════════════
+           Card 3 — Note on Gifts
+           ═══════════════════════════════════════════ -->
+      <article class="details__card details__card--gifts">
+        <div class="details__card-header">
+          <div class="details__icon-badge" aria-hidden="true">
+            <svg class="details__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Gift / Envelope with ribbon icon -->
+              <path d="M20 12v10H4V12"/>
+              <path d="M2 7h20v5H2z"/>
+              <path d="M12 22V7"/>
+              <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+              <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+            </svg>
+          </div>
+          <span class="details__badge">With Gratitude</span>
+          <h3 class="details__card-title">A Note on Gifts</h3>
+        </div>
+
+        <div class="details__card-body">
+          <blockquote class="details__verse-box">
+            <span class="details__verse-quote-mark" aria-hidden="true">&ldquo;</span>
+            <p class="details__verse-line">With all that we are, we feel truly blessed.</p>
+            <p class="details__verse-line">Your presence and prayers are all we request.</p>
+            <p class="details__verse-line">But if you wish to give beyond your heart&rsquo;s embrace,</p>
+            <p class="details__verse-line details__verse-line--accent">a gift of love in the form of cash would be a grace.</p>
+          </blockquote>
+
+          <p class="details__text details__text--center details__text--closing">
+            Your love, presence, and shared joy on our wedding day are the greatest gifts of all.
+          </p>
+        </div>
+      </article>
+
     </div>
 
-    <!-- ═══════════════════════════════════════════
-         Block 2 — Motif & Attire Guide
-         ═══════════════════════════════════════════ -->
-    <div class="details__block">
-      <h3 class="details__heading details__heading--script script-font">Motif &amp; Attire Guide</h3>
-
-      <p class="details__text">
-        Our wedding is a formal celebration, and we'd love for our guests
-        to dress their best as we mark this special day together.
-      </p>
-      <p class="details__text">
-        While we truly appreciate your personal style,
-        we kindly request our guests to wear
-        <strong>Semi-Formal to Formal Attire.</strong>
-      </p>
-
-      <!-- Color swatches -->
-      <div class="details__swatches" aria-label="Wedding motif colors: dusty rose, rose gold, and champagne">
-        <div class="details__swatch details__swatch--1" aria-label="Dusty rose">
-          <span class="details__swatch-hex">#C9A4A0</span>
-        </div>
-        <div class="details__swatch details__swatch--2" aria-label="Rose gold">
-          <span class="details__swatch-hex">#B8918C</span>
-        </div>
-        <div class="details__swatch details__swatch--3" aria-label="Champagne beige">
-          <span class="details__swatch-hex">#E8D5C4</span>
-        </div>
-      </div>
-      <p class="details__swatch-caption">Dusty Rose &amp; Champagne</p>
-
-      <!-- Couple illustration -->
-      <div class="details__couple-illustration" aria-hidden="true">
-        <div class="details__figure details__figure--bride">
-          <svg viewBox="0 0 80 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Simplified bride silhouette -->
-            <circle cx="40" cy="28" r="14" fill="#2C2C2C"/>
-            <path d="M20 60 C20 45, 60 45, 60 60 L58 180 C58 190, 22 190, 22 180 Z"
-                  fill="#C9A4A0" opacity="0.85"/>
-            <path d="M24 65 C24 52, 56 52, 56 65 L54 90 C54 95, 26 95, 26 90 Z"
-                  fill="#B8918C" opacity="0.4"/>
-            <ellipse cx="40" cy="185" rx="18" ry="4" fill="#C9A4A0" opacity="0.3"/>
-          </svg>
-        </div>
-        <div class="details__figure details__figure--groom">
-          <svg viewBox="0 0 80 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Simplified groom silhouette -->
-            <circle cx="40" cy="28" r="14" fill="#2C2C2C"/>
-            <path d="M25 55 C25 45, 55 45, 55 55 L53 180 C53 185, 27 185, 27 180 Z"
-                  fill="#D4C5B8" opacity="0.85"/>
-            <path d="M30 58 C30 50, 50 50, 50 58 L48 100 C48 102, 32 102, 32 100 Z"
-                  fill="#C4B5A5" opacity="0.5"/>
-            <rect x="36" y="60" width="8" height="16" rx="1" fill="#E8D5C4" opacity="0.6"/>
-            <ellipse cx="40" cy="185" rx="15" ry="4" fill="#D4C5B8" opacity="0.3"/>
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    <div class="details__separator" aria-hidden="true">
-      <span class="details__separator-ornament">✦</span>
-    </div>
-
-    <!-- ═══════════════════════════════════════════
-         Block 3 — Note on Gifts
-         ═══════════════════════════════════════════ -->
-    <div class="details__block">
-      <h3 class="details__heading details__heading--script script-font">Note on Gifts</h3>
-      <div class="details__icon-wrap" aria-hidden="true">
-        <svg class="details__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M20 12v10H4V12"/>
-          <path d="M2 7h20v5H2z"/>
-          <path d="M12 22V7"/>
-          <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
-          <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
-        </svg>
-      </div>
-      <p class="details__text details__text--verse">
-        With all that we are, we feel truly blessed.
-      </p>
-      <p class="details__text details__text--verse">
-        Your presence and prayers are all we request.
-      </p>
-      <p class="details__text details__text--verse">
-        But if you wish to give beyond your heart's embrace,
-      </p>
-      <p class="details__text details__text--verse">
-        a gift of love in the form of cash would be a grace.
-      </p>
-    </div>
-
-    <!-- Bottom ornament -->
-    <div class="details__bottom-ornament" aria-hidden="true">
-      ✦&ensp;✦&ensp;✦
+    <!-- ── Bottom ornament ──────────────────────── -->
+    <div class="details__footer-ornament" aria-hidden="true">
+      <span class="details__flourish-line"></span>
+      <span class="details__flourish-star">✦</span>
+      <span class="details__flourish-dot">·</span>
+      <span class="details__flourish-star">✦</span>
+      <span class="details__flourish-dot">·</span>
+      <span class="details__flourish-star">✦</span>
+      <span class="details__flourish-line"></span>
     </div>
 
   </div>
-
-  <!-- Decorative floral border corners -->
-  <div class="details__floral details__floral--tl" aria-hidden="true"></div>
-  <div class="details__floral details__floral--tr" aria-hidden="true"></div>
-  <div class="details__floral details__floral--bl" aria-hidden="true"></div>
-  <div class="details__floral details__floral--br" aria-hidden="true"></div>
 </section>

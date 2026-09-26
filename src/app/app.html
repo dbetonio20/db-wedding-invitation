@@ -46,7 +46,7 @@
   <app-photo-panel
     src="images/prenup/prenup-5.jpg"
     alt="Dominique and Bianca prenup photo — The Details"
-    caption="A love worth celebrating"
+    caption="Every detail, crafted with love"
   />
   <app-wedding-details />
 
@@ -68,18 +68,24 @@
     class="audio-fab"
     type="button"
     (click)="audioService.toggle()"
-    [attr.aria-label]="audioService.enabled() ? 'Mute music' : 'Play ambient music'"
+    [attr.aria-label]="audioService.enabled() ? 'Mute ambient music (Tahanan)' : 'Play ambient music (Tahanan)'"
+    [attr.title]="audioService.enabled() ? 'Mute music (Tahanan)' : 'Play ambient music (Tahanan)'"
     [attr.aria-pressed]="audioService.enabled()"
     [class.audio-fab--playing]="audioService.enabled()"
   >
     @if (audioService.enabled()) {
-      <svg class="audio-fab__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20">
+      <span class="audio-fab__equalizer" aria-hidden="true">
+        <span class="audio-fab__bar"></span>
+        <span class="audio-fab__bar"></span>
+        <span class="audio-fab__bar"></span>
+      </span>
+      <svg class="audio-fab__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18" aria-hidden="true">
         <path d="M11 5L6 9H2v6h4l5 4V5z"/>
         <path d="M15.54 8.46a5 5 0 0 1 0 7.07" stroke-linecap="round"/>
         <path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke-linecap="round"/>
       </svg>
     } @else {
-      <svg class="audio-fab__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20">
+      <svg class="audio-fab__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20" aria-hidden="true">
         <path d="M11 5L6 9H2v6h4l5 4V5z"/>
         <line x1="23" y1="9" x2="17" y2="15" stroke-linecap="round"/>
         <line x1="17" y1="9" x2="23" y2="15" stroke-linecap="round"/>
